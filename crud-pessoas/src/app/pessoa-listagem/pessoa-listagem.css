@@ -1,0 +1,45 @@
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-bottom: #ced4da 1px solid;
+}
+
+#button_incluir{
+    box-shadow: #ccc 0px 1px 2px;
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.text-center {
+    width: 120px;
+}
+
+.btn-sm {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.btn-sm:hover {
+    transform: scale(1.1); 
+}
+
+.bi {
+    font-size: 1rem;
+}
+
+
+th:last-child, td:last-child {
+    width: 100px;
+}

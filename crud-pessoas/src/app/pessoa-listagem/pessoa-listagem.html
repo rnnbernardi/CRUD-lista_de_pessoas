@@ -1,0 +1,52 @@
+<header class="p-3 mb-4 border-bottom bg-light">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-grow-1 me-3 gap-2">
+            <input type="text" class="form-control w-50" placeholder="Buscar por nome ou Identificação"
+                [(ngModel)]="termoBusca" (keyup.enter)="buscarPessoas()">
+            <button class="btn btn-outline-primary" (click)="buscarPessoas()">
+                <i class="bi bi-search" id="button_buscar"></i> Buscar
+            </button>
+        </div>
+        <button class="btn btn-primary" routerLink="/cadastro" id="button_incluir">Incluir</button>
+    </div>
+</header>
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Cadastros</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pessoa</li>
+        </ol>
+    </nav>
+    <div class="table-responsive mb-5">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Identificação</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of pessoas()">
+                    <td>{{ p.identificacao }}</td>
+                    <td>{{ p.nome }}</td>
+                    <td>{{ p.email }}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-primary btn-sm d-flex align-items-center justify-content-center"
+                                [routerLink]="['/cadastro', p.id]" title="Editar">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm d-flex align-items-center justify-content-center"
+                                (click)="excluirPessoa(p.id)" title="Excluir">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

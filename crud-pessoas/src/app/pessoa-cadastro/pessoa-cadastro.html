@@ -1,0 +1,116 @@
+<div class="container mt-4">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Cadastros</a></li>
+      <li class="breadcrumb-item active">Pessoa</li>
+    </ol>
+  </nav>
+
+  <form class="row g-3">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Identificação (CPF)" [(ngModel)]="pessoa.identificacao"
+        name="identificacao">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="pessoa.nome" name="nome">
+    </div>
+    <div class="col-md-6">
+      <input type="date" class="form-control" placeholder="Data de nascimento" [(ngModel)]="pessoa.data_nascimento"
+        name="data">
+    </div>
+    <div class="col-md-6">
+      <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="pessoa.email" name="email">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Telefone" [(ngModel)]="pessoa.telefone" name="telefone">
+    </div>
+
+    <div class="col-12 mt-4">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="exibirModal = true">
+        Adicionar endereço
+      </button>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped border">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Código Postal</th>
+              <th>Logradouro</th>
+              <th>Número</th>
+              <th>Bairro</th>
+              <th>Município</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let end of pessoa.enderecos">
+              <td>{{ end.tipo }}</td>
+              <td>{{ end.cep }}</td>
+              <td>{{ end.logradouro }}</td>
+              <td>{{ end.numero }}</td>
+              <td>{{ end.bairro }}</td>
+              <td>{{ end.municipio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-12 d-flex justify-content-between mt-5 pt-3 border-top">
+      <button type="button" class="btn btn-outline-dark" routerLink="/">Cancelar</button>
+      <button type="submit" class="btn btn-primary px-4" (click)="salvar()">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-backdrop" *ngIf="exibirModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title">Novo Endereço</h5>
+      <button type="button" class="btn-close-x" (click)="exibirModal = false" aria-label="Fechar">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Tipo</label>
+          <select class="form-select" [(ngModel)]="novoEndereco.tipo" name="tipoEnd">
+            <option value="RESIDENCIAL">Residencial</option>
+            <option value="COMERCIAL">Comercial</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">CEP</label>
+          <input type="text" class="form-control" placeholder="00000-000" [(ngModel)]="novoEndereco.cep" name="cepEnd"
+            (blur)="buscarCEP()">
+        </div>
+        <div class="col-md-12">
+          <label class="form-label">Logradouro</label>
+          <input type="text" class="form-control" placeholder="Rua, Av..." [(ngModel)]="novoEndereco.logradouro"
+            name="logradouroEnd">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Número</label>
+          <input type="text" class="form-control" [(ngModel)]="novoEndereco.numero" name="numeroEnd">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Bairro</label>
+          <input type="text" class="form-control" [(ngModel)]="novoEndereco.bairro" name="bairroEnd">
+        </div>
+        <div class="col-md-5">
+          <label class="form-label">Município</label>
+          <input type="text" class="form-control" [(ngModel)]="novoEndereco.municipio" name="municipioEnd">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer d-flex justify-content-between">
+      <button type="button" class="btn btn-light border" (click)="exibirModal = false">Cancelar</button>
+      <button type="button" class="btn btn-primary"
+        (click)="confirmarEndereco(); exibirModal = false">Confirmar</button>
+    </div>
+  </div>
+</div>
