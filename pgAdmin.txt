@@ -1,0 +1,14 @@
+---Instruções---
+
+--- 1° PASSO ---
+abrir o arquivo pgAdmin.bat com editor de texto
+
+--- 2° PASSO ---
+alterar o PGUSER, PGPASSWORD, PGDATABASE conforme o seu esta estruturado.
+
+--- 3° PASSO ---
+
+Rodar seu vscode para fazer o teste 
+
+node server.js
+ng serve 
